@@ -1,5 +1,7 @@
 Arturo Corro
+
 Stanley Chu
+
 System programming -Assignment 1- Tokinizer
 -----------------------------------------------
 Tokenizer is a program that runs by taking an input string from the
