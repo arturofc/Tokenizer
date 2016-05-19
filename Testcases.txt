@@ -1,0 +1,75 @@
+ Testcases for tokenizer.c
+
+Tc1: ./tokenizer ‘helloWorld 1234 += 0x113 0321 3.1415’
+Expected Output:
+word: helloWorld
+decimal: 1234
+C operator: +=
+Hexadecimal: 0x113
+octal: 0321
+Float: 3.1415
+
+-------------------
+Tc2: ./tokenizer ‘helloWorld1234+=0x113:0321/3.1415’
+Expected Output:
+word: helloWorld1234
+C operator: +=
+hexadecimal: 0x113
+bad token: :
+octal: 0321
+divide: /
+float: 3.1415
+
+-------------------
+Tc3: ./tokenizer ‘2350x132’
+Expected Output: 
+decimal: 2350
+word: x132
+
+-------------------
+Tc4: ./tokenizer ‘074132.23’
+Expected Output: 
+Octal: 074132
+structure member: .
+decimal: 23
+
+-------------------
+Tc5: ./tokenizer ‘hel1oWo0.9ld’
+Expected Output:
+word: helloWo0
+structure member: .
+decimal: 9
+word: ld
+
+-------------------
+Tc6: ./tokenizer ‘83940x124.735e-10’
+Expected Output:
+decimal: 83940
+structure member: .
+decimal: 735
+word: e
+minus: -
+decimal: 10
+
+-------------------
+Tc7: ./tokenizer ‘0.3442e12’
+Expected Output:
+float: 0.3442e12
+
+
+-------------------
+Tc8: ./tokenizer ‘@helloworld’
+Expected Output:
+bad token: @
+word: helloworld
+
+-------------------
+Tc9: ./tokenizer ‘hel\n loworld’
+Expected Output:
+word: hel 
+word: loworld
+
+-------------------
+Tc10: ./tokenizer 
+Expected Output:
+no strings inputted.
